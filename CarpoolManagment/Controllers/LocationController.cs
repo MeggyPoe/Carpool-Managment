@@ -6,18 +6,18 @@ namespace CarpoolManagment.Controllers
     [ApiController]
     public class LocationController : ControllerBase
     {
-        private readonly LocationServices _locationServices;
+        private readonly LocationService _locationService;
 
-        public LocationController(LocationServices locationServices)
+        public LocationController(LocationService locationService)
         {
-            _locationServices = locationServices;
+            _locationService = locationService;
         }
 
         [HttpGet]
         [Route("api/locations")]
         public IActionResult GetLocations()
         {
-            return StatusCode(200, _locationServices.GetLocations());
+            return StatusCode(200, _locationService.GetLocations());
         }
     }
 }

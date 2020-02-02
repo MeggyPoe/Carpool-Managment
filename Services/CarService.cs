@@ -12,12 +12,12 @@ using System.Text;
 
 namespace Services
 {
-    public class CarServices
+    public class CarService
     {
         private readonly IEntityRepository<Car> _carRepository;
         private readonly IMapper _mapper;
 
-        public CarServices(IEntityRepository<Car> carRepository, IMapper mapper)
+        public CarService(IEntityRepository<Car> carRepository, IMapper mapper)
         {
             _carRepository = carRepository;
             _mapper = mapper;

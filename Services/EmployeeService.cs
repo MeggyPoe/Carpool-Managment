@@ -9,12 +9,12 @@ using AutoMapper;
 
 namespace Services
 {
-    public class EmployeeServices
+    public class EmployeeService
     {
         private readonly IEntityRepository<Employee> _employeeRepository;
         private readonly IMapper _mapper;
 
-        public EmployeeServices(IEntityRepository<Employee> employeeRepository, IMapper mapper)
+        public EmployeeService(IEntityRepository<Employee> employeeRepository, IMapper mapper)
         {
             _employeeRepository = employeeRepository;
             _mapper = mapper;

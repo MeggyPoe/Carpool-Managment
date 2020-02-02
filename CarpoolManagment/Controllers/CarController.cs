@@ -11,18 +11,18 @@ namespace CarpoolManagment.Controllers
     [ApiController]
     public class CarController : ControllerBase
     {
-        private readonly CarServices _carServices;
+        private readonly CarService _carService;
 
-        public CarController(CarServices carServices)
+        public CarController(CarService carService)
         {
-            _carServices = carServices;
+            _carService = carService;
         }
 
         [HttpGet]
         [Route("api/cars")]
         public IActionResult GetCars(DateTime dateFrom, DateTime dateTo, int travelPlanId)
         {
-            return StatusCode(200, _carServices.GetCars(dateFrom, dateTo, travelPlanId));
+            return StatusCode(200, _carService.GetCars(dateFrom, dateTo, travelPlanId));
         }
     }
 }

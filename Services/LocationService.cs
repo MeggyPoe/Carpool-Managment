@@ -6,11 +6,11 @@ using System.Collections.Generic;
 
 namespace Services
 {
-    public class LocationServices
+    public class LocationService
     {
         private readonly IEntityRepository<Location> _locationRepository;
 
-        public LocationServices(IEntityRepository<Location> locationRepository)
+        public LocationService(IEntityRepository<Location> locationRepository)
         {
             _locationRepository = locationRepository;
         }

@@ -11,18 +11,18 @@ namespace CarpoolManagment.Controllers
     [ApiController]
     public class EmployeeController : ControllerBase
     {
-        private readonly EmployeeServices _employeeServices;
+        private readonly EmployeeService _employeeService;
 
-        public EmployeeController(EmployeeServices employeeServices)
+        public EmployeeController(EmployeeService employeeService)
         {
-            _employeeServices = employeeServices;
+            _employeeService = employeeService;
         }
 
         [HttpGet]
         [Route("api/employees")]
         public IActionResult GetCars(DateTime dateFrom, DateTime dateTo, int travelPlanId)
         {
-            return StatusCode(200, _employeeServices.GetEmpolyees(dateFrom, dateTo, travelPlanId));
+            return StatusCode(200, _employeeService.GetEmpolyees(dateFrom, dateTo, travelPlanId));
         }
     }
 }

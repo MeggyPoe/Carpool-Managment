@@ -43,10 +43,11 @@ namespace CarpoolManagment
             services.AddTransient<IEntityRepository<Car>, EntityRepository<Car>>();
             services.AddTransient<IEntityRepository<Employee>, EntityRepository<Employee>>();
 
-            services.AddTransient<TravelPlanServices>();
-            services.AddTransient<LocationServices>();
-            services.AddTransient<CarServices>();
-            services.AddTransient<EmployeeServices>();
+            services.AddTransient<TravelPlanService>();
+            services.AddTransient<LocationService>();
+            services.AddTransient<CarService>();
+            services.AddTransient<EmployeeService>();
+            services.AddTransient<ValidationService>();
 
             services.AddAutoMapper(typeof(TravelPlanProfile));
             services.AddAutoMapper(typeof(CarProfile));

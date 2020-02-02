@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Services.Exceptions;
 using Core.DTOs;
 using Core.Exstensions;
 using Core.IRepositories;
@@ -11,15 +10,17 @@ using System.Linq;
 
 namespace Services
 {
-    public class TravelPlanServices
+    public class TravelPlanService
     {
         private readonly IEntityRepository<TravelPlan> _travelPlanRepository;
+        private readonly ValidationService _validationService;
         private readonly IMapper _mapper;
 
-        public TravelPlanServices(IEntityRepository<TravelPlan> travelPlanRepository, IMapper mapper)
+        public TravelPlanService(IEntityRepository<TravelPlan> travelPlanRepository, IMapper mapper, ValidationService validationService)
         {
             _travelPlanRepository = travelPlanRepository;
             _mapper = mapper;
+            _validationService = validationService;
         }
 
         public Tuple<IEnumerable<TravelPlanDTO>, int> GetTravelPlans(int pageSize, int pageIndex, DateTime dateFrom, DateTime dateTo)
@@ -46,13 +47,13 @@ namespace Services
 
         public void CreateTravelPlan(TravelPlan travelPlan)
         {
-            ValidateTravelPlan(travelPlan);
+            _validationService.ValidateTravelPlan(travelPlan);
             _travelPlanRepository.Create(travelPlan);
             _travelPlanRepository.Save();
         }
         public void EditTravelPlan(TravelPlan travelPlan)
         {
-            ValidateTravelPlan(travelPlan);
+            _validationService.ValidateTravelPlan(travelPlan);
             var existingTravelPlan = _travelPlanRepository.GetAllWhere(x => x.Id == travelPlan.Id).Include(x => x.TravelPlanEmployees).Single();
             existingTravelPlan.EndLocationId = travelPlan.EndLocationId;
             existingTravelPlan.StartLocationId = travelPlan.StartLocationId;
@@ -61,14 +62,6 @@ namespace Services
             existingTravelPlan.CarId = travelPlan.CarId;
             existingTravelPlan.TravelPlanEmployees = travelPlan.TravelPlanEmployees;
             _travelPlanRepository.Save();
-        }
-
-        public void ValidateTravelPlan(TravelPlan travelPlan)
-        {
-            if (!travelPlan.Employees.Any(x => x.IsDriver))
-            {
-                throw new BadRequestException("Travel plan needs to have atleast one driver!");
-            }
         }
     }
 }

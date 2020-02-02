@@ -242,7 +242,7 @@ class TravelPlanForm extends React.Component<Props, State> {
                             const notAvailableEmployeesNames = employees.filter(x => notAvailableEmployees.indexOf(Number(x.id)) !== -1).map(x => x.value).join(', ').replace(/ *\([^)]*\) */g, "");
                             this.setEmployeeFormItem(values.employees, [`${notAvailableEmployeesNames} are not available for selected time period`]);
                         } 
-                    } else {
+                    } else { 
                         let formData: any = {
                             startDate: values.travelTime[0].toISOString(),
                             endDate: values.travelTime[1].toISOString(),                          
