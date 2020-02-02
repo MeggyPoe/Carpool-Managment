@@ -320,7 +320,7 @@ class TravelPlanForm extends React.Component<Props, State> {
                             message: 'Please select start location!',                          
                          }],                      
                     })(
-                        <Select placeholder="Select start location" >
+                        <Select placeholder="Select start location" showSearch optionFilterProp="children">
                             {locationOptions}
                         </Select>
                     )}
@@ -330,7 +330,7 @@ class TravelPlanForm extends React.Component<Props, State> {
                         initialValue: travelPlan ? travelPlan.endLocation.id : undefined,
                         rules: [{ required: true, message: 'Please select end location!' }],
                     })(
-                        <Select placeholder="Select end location">
+                        <Select placeholder="Select end location" showSearch optionFilterProp="children">
                             {locationOptions}
                         </Select>
                     )}
@@ -341,7 +341,7 @@ class TravelPlanForm extends React.Component<Props, State> {
                         rules: [{ required: true, message: 'Please select car!', validator: this.handleCarSelect }],   
                                           
                     })(
-                        <Select placeholder="Select car">
+                        <Select placeholder="Select car" showSearch optionFilterProp="children">
                             {carOptions}
                         </Select>
                     )}
@@ -361,7 +361,7 @@ class TravelPlanForm extends React.Component<Props, State> {
                             },
                         ],                                                               
                     })(
-                        <Select placeholder="Select employees" mode="multiple">
+                        <Select placeholder="Select employees" mode="multiple" showSearch optionFilterProp="children">
                             {employeeOptions}
                         </Select>
                     )}

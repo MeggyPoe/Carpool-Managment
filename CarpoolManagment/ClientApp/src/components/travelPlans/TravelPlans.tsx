@@ -6,6 +6,7 @@ import { PaginationProps, PaginationConfig } from "antd/lib/pagination";
 import moment, { Moment } from "moment";
 import { KeyValue } from "../../core/common/KeyValue";
 import TravelPlanForm from "./TravelPlanForm";
+import { ColumnProps } from "antd/lib/table";
 
 const { Content } = Layout;
 const { MonthPicker } = DatePicker;
@@ -159,38 +160,44 @@ class TravelPlans extends React.PureComponent<{}, State> {
             </Menu>
         );
 
-        const columns =[
+        const columns: ColumnProps<TravelPlan>[] =[
             {
                 title: 'Id',
                 dataIndex: 'id',
-                key: 'id'
-            },
-            {
-                title: 'Start location',
-                dataIndex: 'startLocation.value',
-                key: 'startLocation'
-            },
-            {
-                title: 'End location',
-                dataIndex: 'endLocation.value',
-                key: 'endLocation'
-            },
+                key: 'id',
+                width: 60
+            },         
             {
                 title: 'Start date',
                 dataIndex: 'startDate',
                 key: 'startDate',
+                width: 140,
                 render: (value: Date): string => moment(value).format('DD.MM.YYYY. HH:mm')
             },
             {
                 title: 'End date',
                 dataIndex: 'endDate',
                 key: 'endDate',
+                width: 140,
                 render: (value: Date): string => moment(value).format('DD.MM.YYYY. HH:mm')
+            },
+            {
+                title: 'Start location',
+                dataIndex: 'startLocation.value',
+                key: 'startLocation',
+                width: 140
+            },
+            {
+                title: 'End location',
+                dataIndex: 'endLocation.value',
+                key: 'endLocation',
+                width: 140
             },
             {
                 title: 'Car',
                 dataIndex: 'car.value',
-                key: 'car'
+                key: 'car',
+                render: (value: string): string => value.replace(/ *\([^)]*\) */g, "")
             },
             {
                 title: 'Employees',
@@ -204,6 +211,7 @@ class TravelPlans extends React.PureComponent<{}, State> {
                 title: 'Actions',
                 dataIndex: '',
                 key: 'actions',
+                width: 70,
                 render: (value: TravelPlan): React.ReactNode => (
                     <Dropdown
                         overlay={actions(value)}
@@ -245,7 +253,9 @@ class TravelPlans extends React.PureComponent<{}, State> {
                     dataSource={travelPlans}
                     pagination={paginationOptions}
                     bordered
-                    onChange={this.handleTableChange}      
+                    onChange={this.handleTableChange} 
+                    tableLayout="fixed"
+                    scroll={{ y: 485, x: false }}    
                     locale={{ emptyText: <Empty description="No travel plans in selected month" image={Empty.PRESENTED_IMAGE_SIMPLE} /> }}                 
                 />
                     {isDrawerOpened && (
