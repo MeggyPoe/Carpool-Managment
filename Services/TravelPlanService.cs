@@ -32,6 +32,7 @@ namespace Services
             var totalCount = query.Count();
 
             query = query
+                .OrderBy(x => x.StartDate)
                 .Skip((pageIndex - 1) * pageSize)
                 .Take(pageSize);
 

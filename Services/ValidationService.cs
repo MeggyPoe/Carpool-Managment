@@ -17,6 +17,11 @@ namespace Services
 
         public void ValidateTravelPlan(TravelPlan travelPlan)
         {
+            if (travelPlan.StartDate >= travelPlan.EndDate)
+            {
+                throw new BadRequestException("Start time of travel plan must be smaller then end time!");
+            }
+
             var newTravelPlanEmployees = travelPlan.TravelPlanEmployees.Select(x => x.EmployeeId);
             var availableEmloyees = _employeeService.GetEmpolyees(travelPlan.StartDate, travelPlan.EndDate, travelPlan.Id);
 
