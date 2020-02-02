@@ -1,0 +1,17 @@
+@import '~antd/dist/antd.css';
+
+.ant-layout{
+    min-height: calc(100vh);
+}
+
+.ant-table-wrapper {
+    padding: 16px 24px;
+}
+
+.ant-calendar-picker.range-picker {
+    width: 100% !important;
+}
+
+.form-button-close {
+    margin-right: 1rem;;
+}

@@ -9,9 +9,13 @@ namespace Core.Models
     public class TravelPlan
     {
         public int Id { get; set; }
+        [Required]
         public int StartLocationId { get; set; }
+        [Required]
         public int EndLocationId { get; set; }
+        [Required]
         public DateTime StartDate { get; set; }
+        [Required]
         public DateTime EndDate { get; set; }
         [Required]
         public string CarId { get; set; }
@@ -19,13 +23,13 @@ namespace Core.Models
         public Location StartLocation { get; set; }
         public Location EndLocation { get; set; }
         public Car Car { get; set; }
-
+        [Required, MinLength(1)]
         public List<TravelPlanEmployee> TravelPlanEmployees { get; set; }
 
         [NotMapped]
         public List<Employee> Employees
         {
-            get { return TravelPlanEmployees.Select(x => x.Employee).ToList(); }
+            get { return TravelPlanEmployees != null ? TravelPlanEmployees.Select(x => x.Employee).ToList() : new List<Employee>(); }
             set
             {
                 TravelPlanEmployees = new List<TravelPlanEmployee>();

@@ -1,3 +1,7 @@
+using AutoMapper;
+using Core.AutoMapper;
+using Core.IRepositories;
+using Core.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
@@ -6,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Persistance;
+using Persistance.Repositories;
+using Services;
 
 namespace CarpoolManagment
 {
@@ -21,6 +27,7 @@ namespace CarpoolManagment
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddControllersWithViews();
 
             // In production, the React files will be served from this directory
@@ -30,6 +37,20 @@ namespace CarpoolManagment
             });
 
             services.AddDbContext<CarpoolManagmentContext>(options => options.UseSqlite("Data Source=CarpoolManagment.db"));
+
+            services.AddTransient<IEntityRepository<TravelPlan>, EntityRepository<TravelPlan>>();
+            services.AddTransient<IEntityRepository<Location>, EntityRepository<Location>>();
+            services.AddTransient<IEntityRepository<Car>, EntityRepository<Car>>();
+            services.AddTransient<IEntityRepository<Employee>, EntityRepository<Employee>>();
+
+            services.AddTransient<TravelPlanServices>();
+            services.AddTransient<LocationServices>();
+            services.AddTransient<CarServices>();
+            services.AddTransient<EmployeeServices>();
+
+            services.AddAutoMapper(typeof(TravelPlanProfile));
+            services.AddAutoMapper(typeof(CarProfile));
+            services.AddAutoMapper(typeof(EmployeeProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

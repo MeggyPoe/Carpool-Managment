@@ -1,11 +1,10 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
 
 namespace Core.Common
 {
-    public class KeyValue
+    public class KeyValue<T> where T : IComparable, IConvertible
     {
-        public int Id { get; set; }
-        [Required]
+        public T Id { get; set; }
         public string Value { get; set; }
     }
 }

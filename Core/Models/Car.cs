@@ -1,9 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Core.Common;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 
 namespace Core.Models
 {
-    public class Car
+    public class Car : IListTravelPlans
     {
         [Key]
         public string Plates { get; set; }
@@ -15,5 +17,6 @@ namespace Core.Models
 
         public CarType CarType { get; set; }
         public Color Color { get; set; }
+        public IEnumerable<TravelPlan> TravelPlans { get; set; }
     }
 }

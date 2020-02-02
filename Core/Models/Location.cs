@@ -2,5 +2,5 @@
 
 namespace Core.Models
 {
-    public class Location : KeyValue { }
+    public class Location : KeyValue<int> { }
 }

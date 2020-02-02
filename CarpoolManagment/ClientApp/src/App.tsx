@@ -1,16 +1,40 @@
 import * as React from 'react';
-import { Route } from 'react-router';
-import Layout from './components/Layout';
-import Home from './components/Home';
-import Counter from './components/Counter';
-import FetchData from './components/FetchData';
+import { Layout } from 'antd';
+import TravelPlans from './components/travelPlans/TravelPlans';
 
-import './custom.css'
+const { Content, Sider } = Layout;
 
-export default () => (
-    <Layout>
-        <Route exact path='/' component={Home} />
-        <Route path='/counter' component={Counter} />
-        <Route path='/fetch-data/:startDateIndex?' component={FetchData} />
-    </Layout>
-);
+interface State {
+    hasError: boolean;
+}
+
+class App extends React.PureComponent<{}, State> {
+    public constructor(props: {}) {
+        super(props);
+
+        this.state = {
+            hasError: false,
+        };
+    }
+
+    public static getDerivedStateFromError = (): State => ({ hasError: true });
+
+    public render = (): React.ReactElement => {
+        const { hasError } = this.state;
+        if (hasError) {
+            // TODO: Design fallback UI
+            return <h1>Something went wrong. Please reload the page</h1>;
+        }
+
+        return (
+            <Layout>
+                <Sider width="100"/>              
+                <Content>
+                    <TravelPlans />
+                </Content>
+            </Layout>
+        );
+    };
+}
+
+export default App;

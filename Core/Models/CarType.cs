@@ -2,5 +2,5 @@
 
 namespace Core.Models
 {
-    public class CarType : KeyValue { }
+    public class CarType : KeyValue<int> { }
 }

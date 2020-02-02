@@ -2,5 +2,5 @@
 
 namespace Core.Models
 {
-    public class Color : KeyValue { }
+    public class Color : KeyValue<int> { }
 }

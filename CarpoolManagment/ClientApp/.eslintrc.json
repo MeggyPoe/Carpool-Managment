@@ -1,3 +1,77 @@
-{
-    "parser": "typescript-eslint-parser"
+{    
+    "env": {
+        "browser": true,
+        "es6": true,
+        "jest": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "project": true,
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    },
+    "plugins": [
+        "react",
+        "@typescript-eslint",
+        "jest"
+    ],
+    "extends": [
+        "plugin:react/recommended",
+        "plugin:@typescript-eslint/recommended"
+    ],
+    "rules": {
+        "react/jsx-filename-extension": [
+            1,
+            {
+                "extensions": [
+                    ".jsx",
+                    ".tsx"
+                ]
+            }
+        ],
+        "react/jsx-indent": [
+            "error",
+            4
+        ],
+        "react/no-danger": [
+            "off"
+        ],
+        "react/jsx-indent-props": [
+            "error",
+            4
+        ],
+        "max-len": ["error", 150, 4, {
+            "ignoreStrings": true,
+            "ignoreComments": true,
+            "ignoreTemplateLiterals": true
+        }],
+        "indent": "off",
+        "import/no-extraneous-dependencies": [
+            "error",
+            {
+                "devDependencies": true
+            }
+        ],
+        "react/prop-types": "off",
+        "linebreak-style": [
+            "error",
+            "windows"
+        ],
+        "@typescript-eslint/no-explicit-any": "error"
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx",
+                    ".ts",
+                    ".tsx"
+                ]
+            }
+        }
+    }
 }
